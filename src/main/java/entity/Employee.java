@@ -82,18 +82,4 @@ public class Employee {
     public void setHoursWorked(long hoursWorked) {
         this.hoursWorked = hoursWorked;
     }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", positions=" + positions +
-                ", id=" + id +
-                ", salary=" + salary +
-                ", busy=" + busy +
-                ", endDoCommand=" + endDoCommand +
-                ", endWorking=" + endWorking +
-                '}' + "\n";
-    }
 }
