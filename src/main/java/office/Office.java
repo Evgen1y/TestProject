@@ -43,7 +43,7 @@ public class Office {
 
     private void createEmployees(){
         for(int i = 1; i < random(101, 11); i++){
-            employees.add(new Employee("First name "+ i, "Last Name " + i, random(8, 6), i));
+            employees.add(new Employee("First name "+ i, "Last Name " + i, random(8, 6)));
         }
         int countDirector = 0;
         for(Employee employee: employees){

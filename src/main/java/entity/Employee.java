@@ -11,20 +11,16 @@ public class Employee {
     private String firstName;
     private String lastName;
     private List<Position> positions;
-    private int id;
     private double salary;
     private boolean busy = false;
     private LocalTime endDoCommand = LocalTime.of(8, 0);
     private LocalTime endWorking;
-    private int workingHours;
     private long hoursWorked = 0;
 
-    public Employee(String firstName, String lastName, int workingHours, int id) {
+    public Employee(String firstName, String lastName, int workingHours) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.endWorking = LocalTime.of(8+workingHours, 0);
-        this.id = id;
-        this.workingHours = workingHours;
     }
 
     public String getFirstName() {
