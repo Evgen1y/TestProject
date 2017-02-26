@@ -27,24 +27,22 @@ public class WorkDay {
     void workOneDay(){
         if(!day.getDayOfWeek().equals(DayOfWeek.SATURDAY) || !day.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
             for (int hour = workingTime.getHour(); hour <= 16; hour++, workingTime = workingTime.plusHours(1)) {
-                System.out.println(workingTime.toString());
                 directorGiveCommand();
             }
             workingTime = LocalTime.of(8, 0);
         }
-        System.out.println(day.toString());
         day = day.plusDays(1);
         newTimeInNewDay(office.getEmployees());
-        //office.getEmployees().forEach(System.out::println);
     }
 
     private void directorGiveCommand(){
+
         for(Employee employee: directors){
             Director director = (Director) employee.getPositions().stream()
                     .filter(p -> p.getName().equals("Director"))
                     .findFirst()
                     .get();
-            director.giveCommand(notDirectors, workingTime);
+            director.giveCommand(notDirectors, workingTime, day);
         }
     }
 

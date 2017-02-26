@@ -16,28 +16,31 @@ import static service.ProjectUtils.*;
 public class WorkWeek {
     private WorkDay workDay;
     private LocalDate endMonth;
+    private Accountant accountant;
 
-    public WorkWeek(int month){
+
+    WorkWeek(int month){
         this.workDay = new WorkDay(month);
         this.endMonth = workDay.getDay().plusMonths(1);
     }
 
-    public void workOneWeek(){
+    void workOneWeek(){
         LocalDate startDay = workDay.getDay();
         LocalDate endDay;
-        Accountant accountant;
+
         while(workDay.getDay().getDayOfWeek()!= DayOfWeek.SATURDAY
                 && workDay.getDay().getDayOfWeek()!= DayOfWeek.SUNDAY
                 && workDay.getDay().isBefore(endMonth)){
-            System.out.println(workDay.getDay().getDayOfWeek());
             workDay.workOneDay();
         }
         endDay = workDay.getDay();
-        getWorkDays(startDay, endDay);
+
         accountant = getOneAccountant();
-        if (getWorkDays(startDay, startDay)!=0) {
-            accountant.paySalary(workDay.getOffice().getEmployees(), getWorkDays(startDay, endDay));
+        if (getWorkDays(startDay, endDay)!=0) {
+            accountant.paySalary(workDay.getOffice().getEmployees(), startDay, endDay);
         }
+
+        getOffice().getEmployees().forEach(e -> e.setHoursWorked(0));
         workDay.setDay(workDay.getDay().plusDays(1));
     }
 
@@ -60,5 +63,13 @@ public class WorkWeek {
 
     public Office getOffice(){
         return workDay.getOffice();
+    }
+
+    public WorkDay getWorkDay() {
+        return workDay;
+    }
+
+    public Accountant getAccountant() {
+        return accountant;
     }
 }

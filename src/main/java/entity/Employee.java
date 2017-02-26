@@ -17,6 +17,7 @@ public class Employee {
     private LocalTime endDoCommand = LocalTime.of(8, 0);
     private LocalTime endWorking;
     private int workingHours;
+    private long hoursWorked = 0;
 
     public Employee(String firstName, String lastName, int workingHours, int id) {
         this.firstName = firstName;
@@ -28,6 +29,10 @@ public class Employee {
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public List<Position> getPositions() {
@@ -70,8 +75,12 @@ public class Employee {
         this.salary = salary;
     }
 
-    public int getWorkingHours() {
-        return workingHours;
+    public long getHoursWorked() {
+        return hoursWorked;
+    }
+
+    public void setHoursWorked(long hoursWorked) {
+        this.hoursWorked = hoursWorked;
     }
 
     @Override
